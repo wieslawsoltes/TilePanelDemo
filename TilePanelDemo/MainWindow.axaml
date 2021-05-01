@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TilePanelDemo"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        x:Class="TilePanelDemo.MainWindow"
+        Title="TilePanelDemo">
+
+    <DockPanel>
+
+        <StackPanel DockPanel.Dock="Left" Margin="12" Spacing="6">
+            <Label Content="MaxColumns"/>
+            <NumericUpDown Text="{Binding #TilePanel.MaxColumns}" Minimum="0"/>
+        </StackPanel>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <local:TilePanel Name="TilePanel" 
+                             MaxColumns="3" 
+                             UseLayoutRounding="False"
+                             Background="Gray">
+                <Rectangle Fill="Red" local:TilePanel.TileSize="Small"/>
+                <Rectangle Fill="Green" local:TilePanel.TileSize="Small"/>
+                <Rectangle Fill="Blue" local:TilePanel.TileSize="Small"/>
+                <Rectangle Fill="Yellow" local:TilePanel.TileSize="Medium"/>
+                <Rectangle Fill="Black" local:TilePanel.TileSize="Large"/>
+            </local:TilePanel>
+        </ScrollViewer>
+
+    </DockPanel>
+
+</Window>
