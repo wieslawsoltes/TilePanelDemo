@@ -3,6 +3,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TilePanelDemo"
+        xmlns:sys="clr-namespace:System;assembly=netstandard"
+        xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
         x:Class="TilePanelDemo.MainWindow"
         Title="TilePanelDemo">
@@ -12,11 +14,33 @@
         <StackPanel DockPanel.Dock="Left" Margin="12" Spacing="6">
             <Label Content="MaxColumns"/>
             <NumericUpDown Text="{Binding #TilePanel.MaxColumns}" Minimum="0"/>
+            <Label Content="LayoutSize"/>
+            <ComboBox SelectedItem="{Binding #TilePanel.LayoutSize}" HorizontalAlignment="Stretch">
+                <generic:List x:TypeArguments="sys:String">
+                    <sys:String>Small</sys:String>
+                    <sys:String>Medium</sys:String>
+                    <sys:String>Large</sys:String>
+                </generic:List>
+            </ComboBox>
         </StackPanel>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <ScrollViewer.Styles>
+                <Style Selector="local|TilePanel:small">
+                    <Setter Property="MaxColumns" Value="1"/>
+                    <Setter Property="Background" Value="LightGray"/>
+                </Style>
+                <Style Selector="local|TilePanel:medium">
+                    <Setter Property="MaxColumns" Value="2"/>
+                    <Setter Property="Background" Value="Gray"/>
+                </Style>
+                <Style Selector="local|TilePanel:large">
+                    <Setter Property="MaxColumns" Value="3"/>
+                    <Setter Property="Background" Value="DarkGray"/>
+                </Style>
+            </ScrollViewer.Styles>
             <local:TilePanel Name="TilePanel" 
-                             MaxColumns="3" 
+                             LayoutSize="Large"
                              UseLayoutRounding="False"
                              Background="Gray">
                 <Rectangle Fill="Red" local:TilePanel.TileSize="Small"/>
