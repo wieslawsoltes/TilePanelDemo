@@ -2,9 +2,11 @@
 using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 
 namespace TilePanelDemo
 {
+    [PseudoClasses(":small", ":medium", ":large")]
     public class TilePanel : Panel
     {
         private Size _smallSize = new Size(228, 126);
@@ -16,6 +18,9 @@ namespace TilePanelDemo
 
         public static readonly StyledProperty<int> MaxColumnsProperty = 
             AvaloniaProperty.Register<TilePanel, int>(nameof(MaxColumns));
+
+        public static readonly StyledProperty<string?> LayoutSizeProperty = 
+            AvaloniaProperty.Register<TilePanel, string?>(nameof(LayoutSize));
 
         public static string? GetTileSize(IAvaloniaObject obj)
         {
@@ -33,6 +38,17 @@ namespace TilePanelDemo
             set => SetValue(MaxColumnsProperty, value);
         }
 
+        public string? LayoutSize
+        {
+            get => GetValue(LayoutSizeProperty);
+            set => SetValue(LayoutSizeProperty, value);
+        }
+
+        public TilePanel()
+        {
+            UpdateLayoutSizePseudoClasses(LayoutSize);
+        } 
+        
         protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
         {
             base.OnPropertyChanged(change);
@@ -42,6 +58,18 @@ namespace TilePanelDemo
                 InvalidateMeasure();
                 InvalidateArrange();
             }
+            
+            if (change.Property == LayoutSizeProperty)
+            {
+                UpdateLayoutSizePseudoClasses(change.NewValue.GetValueOrDefault<string>());
+            }
+        }
+
+        private void UpdateLayoutSizePseudoClasses(string? layoutSize)
+        {
+            PseudoClasses.Set(":small", string.Compare(layoutSize, "Small", StringComparison.OrdinalIgnoreCase) == 0);
+            PseudoClasses.Set(":medium", string.Compare(layoutSize, "Medium", StringComparison.OrdinalIgnoreCase) == 0);
+            PseudoClasses.Set(":large", string.Compare(layoutSize, "Large", StringComparison.OrdinalIgnoreCase) == 0);
         }
 
         private Size MeasureArrange(bool isArrange)
