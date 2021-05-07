@@ -12,8 +12,10 @@
     <DockPanel>
 
         <StackPanel DockPanel.Dock="Left" Margin="12" Spacing="6">
+
             <Label Content="MaxColumns"/>
             <NumericUpDown Text="{Binding #TilePanel.MaxColumns}" Minimum="0"/>
+
             <Label Content="LayoutSize"/>
             <ComboBox SelectedItem="{Binding #TilePanel.LayoutSize}" HorizontalAlignment="Stretch">
                 <generic:List x:TypeArguments="sys:String">
@@ -22,10 +24,15 @@
                     <sys:String>Large</sys:String>
                 </generic:List>
             </ComboBox>
+
         </StackPanel>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+
             <ScrollViewer.Styles>
+                
+                <!-- TilePanel -->
+                
                 <Style Selector="local|TilePanel:small">
                     <Setter Property="MaxColumns" Value="1"/>
                     <Setter Property="Background" Value="LightGray"/>
@@ -38,17 +45,53 @@
                     <Setter Property="MaxColumns" Value="3"/>
                     <Setter Property="Background" Value="DarkGray"/>
                 </Style>
+
+                <!-- Tile: t1 -->
+                <Style Selector="local|TilePanel:small > :is(Control).t1">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small"/>
+                </Style>
+                <Style Selector="local|TilePanel:medium > :is(Control).t1">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small"/>
+                </Style>
+                <Style Selector="local|TilePanel:large > :is(Control).t1">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small"/>
+                </Style>
+
+                <!-- Tile: t2 -->
+                <Style Selector="local|TilePanel:small > :is(Control).t2">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small"/>
+                </Style>
+                <Style Selector="local|TilePanel:medium > :is(Control).t2">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium"/>
+                </Style>
+                <Style Selector="local|TilePanel:large > :is(Control).t2">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium"/>
+                </Style>
+
+                <!-- Tile: t3 -->
+                <Style Selector="local|TilePanel:small > :is(Control).t3">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium"/>
+                </Style>
+                <Style Selector="local|TilePanel:medium > :is(Control).t3">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium"/>
+                </Style>
+                <Style Selector="local|TilePanel:large > :is(Control).t3">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Large"/>
+                </Style>
+
             </ScrollViewer.Styles>
+
             <local:TilePanel Name="TilePanel" 
                              LayoutSize="Large"
                              UseLayoutRounding="False"
                              Background="Gray">
-                <Rectangle Fill="Red" local:TilePanel.TileSize="Small"/>
-                <Rectangle Fill="Green" local:TilePanel.TileSize="Small"/>
-                <Rectangle Fill="Blue" local:TilePanel.TileSize="Small"/>
-                <Rectangle Fill="Yellow" local:TilePanel.TileSize="Medium"/>
-                <Rectangle Fill="Black" local:TilePanel.TileSize="Large"/>
+                <Rectangle Fill="Red" Classes="t1"/>
+                <Rectangle Fill="Green" Classes="t1"/>
+                <Rectangle Fill="Blue" Classes="t1"/>
+                <Rectangle Fill="Yellow" Classes="t2"/>
+                <Rectangle Fill="Black" Classes="t3"/>
             </local:TilePanel>
+
         </ScrollViewer>
 
     </DockPanel>
