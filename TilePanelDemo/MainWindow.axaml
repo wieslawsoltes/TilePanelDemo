@@ -54,7 +54,6 @@
                     <Setter Property="Background" Value="DarkGray" />
                 </Style>
 
-
                 <!-- Tile: t1 -->
                 <Style Selector="local|TilePanel:small > :is(Control).t1">
                     <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
@@ -94,6 +93,11 @@
                     <Setter Property="(local:TilePanel.TileSize)" Value="Large" />
                 </Style>
                 <Style Selector="local|TilePanel:wide > :is(Control).t3">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Large" />
+                </Style>
+
+                <!-- Tile: t4 -->
+                <Style Selector="local|TilePanel:wide > :is(Control).t4">
                     <Setter Property="(local:TilePanel.TileSize)" Value="Wide" />
                 </Style>
 
@@ -109,6 +113,7 @@
                 <Rectangle Fill="Blue" Classes="t1" />
                 <Rectangle Fill="Yellow" Classes="t2" />
                 <Rectangle Fill="Black" Classes="t3" />
+                <Rectangle Fill="Magenta" Classes="t4" />
             </local:TilePanel>
 
         </ScrollViewer>
