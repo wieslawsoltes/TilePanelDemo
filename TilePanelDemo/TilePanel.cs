@@ -6,12 +6,24 @@ using Avalonia.Controls.Metadata;
 
 namespace TilePanelDemo
 {
-    [PseudoClasses(":small", ":medium", ":large")]
+    [PseudoClasses(
+        ":small", ":medium", ":large", ":wide",
+        ":xs", ":sm", ":md", ":lg", ":xl", ":xxl")]
     public class TilePanel : Panel
     {
+        // Tile sizes
         private Size _smallSize = new Size(228, 126);
         private Size _mediumSize = new Size(228, 252);
         private Size _largeSize = new Size(456, 252);
+        private Size _wideSize = new Size(684, 252);
+
+        // Width breakpoints
+        private double _xSmallBreakpoint = 576;
+        private double _smallBreakpoint = 576;
+        private double _mediumBreakpoint = 768;
+        private double _largeBreakpoint = 992;
+        private double _extraLargeBreakpoint = 1200;
+        private double _extraExtraLargeBreakpoint = 1400;
 
         public static readonly AttachedProperty<string?> TileSizeProperty = 
             AvaloniaProperty.RegisterAttached<IAvaloniaObject, string?>("TileSize", typeof(TilePanel));
@@ -21,6 +33,9 @@ namespace TilePanelDemo
 
         public static readonly StyledProperty<string?> LayoutSizeProperty = 
             AvaloniaProperty.Register<TilePanel, string?>(nameof(LayoutSize));
+
+        public static readonly StyledProperty<double> WidthSourceProperty = 
+            AvaloniaProperty.Register<TilePanel, Double>(nameof(WidthSource));
 
         public static string? GetTileSize(IAvaloniaObject obj)
         {
@@ -43,12 +58,19 @@ namespace TilePanelDemo
             get => GetValue(LayoutSizeProperty);
             set => SetValue(LayoutSizeProperty, value);
         }
+        
+        public double WidthSource
+        {
+            get => GetValue(WidthSourceProperty);
+            set => SetValue(WidthSourceProperty, value);
+        }
 
         public TilePanel()
         {
             UpdateLayoutSizePseudoClasses(LayoutSize);
+            UpdateWidthSourcePseudoClasses(WidthSource);
         } 
-        
+
         protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
         {
             base.OnPropertyChanged(change);
@@ -63,6 +85,11 @@ namespace TilePanelDemo
             {
                 UpdateLayoutSizePseudoClasses(change.NewValue.GetValueOrDefault<string>());
             }
+
+            if (change.Property == WidthSourceProperty)
+            {
+                UpdateWidthSourcePseudoClasses(change.NewValue.GetValueOrDefault<double>());
+            }
         }
 
         private void UpdateLayoutSizePseudoClasses(string? layoutSize)
@@ -70,6 +97,17 @@ namespace TilePanelDemo
             PseudoClasses.Set(":small", string.Compare(layoutSize, "Small", StringComparison.OrdinalIgnoreCase) == 0);
             PseudoClasses.Set(":medium", string.Compare(layoutSize, "Medium", StringComparison.OrdinalIgnoreCase) == 0);
             PseudoClasses.Set(":large", string.Compare(layoutSize, "Large", StringComparison.OrdinalIgnoreCase) == 0);
+            PseudoClasses.Set(":wide", string.Compare(layoutSize, "Wide", StringComparison.OrdinalIgnoreCase) == 0);
+        }
+
+        private void UpdateWidthSourcePseudoClasses(double widthSource)
+        {
+            PseudoClasses.Set(":xs", widthSource < _xSmallBreakpoint);
+            PseudoClasses.Set(":sm", widthSource >= _smallBreakpoint);
+            PseudoClasses.Set(":md", widthSource >= _mediumBreakpoint);
+            PseudoClasses.Set(":lg", widthSource >= _largeBreakpoint);
+            PseudoClasses.Set(":xl", widthSource >= _extraLargeBreakpoint);
+            PseudoClasses.Set(":xxl", widthSource >= _extraExtraLargeBreakpoint);
         }
 
         private Size MeasureArrange(bool isArrange)
@@ -91,6 +129,7 @@ namespace TilePanelDemo
                     "small" => _smallSize,
                     "medium" => _mediumSize,
                     "large" => _largeSize,
+                    "wide" => _wideSize,
                     _ => Size.Empty
                 };
 
