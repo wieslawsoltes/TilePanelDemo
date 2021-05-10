@@ -14,7 +14,7 @@
         <StackPanel DockPanel.Dock="Left" Margin="12" Spacing="6">
 
             <Label Content="MaxColumns" />
-            <NumericUpDown Text="{Binding #TilePanel.MaxColumns}" Minimum="0" />
+            <NumericUpDown Text="{Binding #TilePanel.Columns}" Minimum="0" />
 
             <Label Content="LayoutSize" />
             <ComboBox SelectedItem="{Binding #TilePanel.LayoutSize}" HorizontalAlignment="Stretch">
@@ -31,26 +31,26 @@
 
         </StackPanel>
 
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
             <ScrollViewer.Styles>
 
                 <!-- TilePanel -->
 
                 <Style Selector="local|TilePanel:small">
-                    <Setter Property="MaxColumns" Value="1" />
+                    <Setter Property="Columns" Value="1" />
                     <Setter Property="Background" Value="LightGray" />
                 </Style>
                 <Style Selector="local|TilePanel:medium">
-                    <Setter Property="MaxColumns" Value="2" />
+                    <Setter Property="Columns" Value="2" />
                     <Setter Property="Background" Value="Gray" />
                 </Style>
                 <Style Selector="local|TilePanel:large">
-                    <Setter Property="MaxColumns" Value="3" />
+                    <Setter Property="Columns" Value="3" />
                     <Setter Property="Background" Value="DarkGray" />
                 </Style>
                 <Style Selector="local|TilePanel:wide">
-                    <Setter Property="MaxColumns" Value="3" />
+                    <Setter Property="Columns" Value="3" />
                     <Setter Property="Background" Value="DarkGray" />
                 </Style>
 
