@@ -22,8 +22,12 @@
                     <sys:String>Small</sys:String>
                     <sys:String>Medium</sys:String>
                     <sys:String>Large</sys:String>
+                    <sys:String>Wide</sys:String>
                 </generic:List>
             </ComboBox>
+
+            <Label Content="WidthSource" />
+            <NumericUpDown Text="{Binding #TilePanel.WidthSource}" Value="{Binding #TilePanel.WidthSource}" Minimum="0" />
 
         </StackPanel>
 
@@ -45,6 +49,11 @@
                     <Setter Property="MaxColumns" Value="3" />
                     <Setter Property="Background" Value="DarkGray" />
                 </Style>
+                <Style Selector="local|TilePanel:wide">
+                    <Setter Property="MaxColumns" Value="3" />
+                    <Setter Property="Background" Value="DarkGray" />
+                </Style>
+
 
                 <!-- Tile: t1 -->
                 <Style Selector="local|TilePanel:small > :is(Control).t1">
@@ -54,6 +63,9 @@
                     <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
                 <Style Selector="local|TilePanel:large > :is(Control).t1">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
+                </Style>
+                <Style Selector="local|TilePanel:wide > :is(Control).t1">
                     <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
 
@@ -67,6 +79,9 @@
                 <Style Selector="local|TilePanel:large > :is(Control).t2">
                     <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
                 </Style>
+                <Style Selector="local|TilePanel:wide > :is(Control).t2">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
+                </Style>
 
                 <!-- Tile: t3 -->
                 <Style Selector="local|TilePanel:small > :is(Control).t3">
@@ -78,12 +93,16 @@
                 <Style Selector="local|TilePanel:large > :is(Control).t3">
                     <Setter Property="(local:TilePanel.TileSize)" Value="Large" />
                 </Style>
+                <Style Selector="local|TilePanel:wide > :is(Control).t3">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Wide" />
+                </Style>
 
             </ScrollViewer.Styles>
 
             <local:TilePanel Name="TilePanel"
                              LayoutSize="Large"
                              UseLayoutRounding="False"
+                             WidthSource="768"
                              Background="Gray">
                 <Rectangle Fill="Red" Classes="t1" />
                 <Rectangle Fill="Green" Classes="t1" />
