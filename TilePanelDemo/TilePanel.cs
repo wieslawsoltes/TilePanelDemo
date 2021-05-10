@@ -124,7 +124,7 @@ namespace TilePanelDemo
             {
                 var tileSize = TilePanel.GetTileSize(child);
 
-                var size = (tileSize?.ToLower() ?? "small") switch
+                var size = tileSize?.ToLower() switch
                 {
                     "small" => _smallSize,
                     "medium" => _mediumSize,
