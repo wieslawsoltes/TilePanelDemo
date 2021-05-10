@@ -28,8 +28,8 @@ namespace TilePanelDemo
         public static readonly AttachedProperty<string?> TileSizeProperty = 
             AvaloniaProperty.RegisterAttached<IAvaloniaObject, string?>("TileSize", typeof(TilePanel));
 
-        public static readonly StyledProperty<int> MaxColumnsProperty = 
-            AvaloniaProperty.Register<TilePanel, int>(nameof(MaxColumns));
+        public static readonly StyledProperty<int> ColumnsProperty = 
+            AvaloniaProperty.Register<TilePanel, int>(nameof(Columns));
 
         public static readonly StyledProperty<string?> LayoutSizeProperty = 
             AvaloniaProperty.Register<TilePanel, string?>(nameof(LayoutSize));
@@ -47,10 +47,10 @@ namespace TilePanelDemo
             obj.SetValue(TileSizeProperty, value);
         }
 
-        public int MaxColumns
+        public int Columns
         {
-            get => GetValue(MaxColumnsProperty);
-            set => SetValue(MaxColumnsProperty, value);
+            get => GetValue(ColumnsProperty);
+            set => SetValue(ColumnsProperty, value);
         }
 
         public string? LayoutSize
@@ -75,7 +75,7 @@ namespace TilePanelDemo
         {
             base.OnPropertyChanged(change);
 
-            if (change.Property == MaxColumnsProperty)
+            if (change.Property == ColumnsProperty)
             {
                 InvalidateMeasure();
                 InvalidateArrange();
@@ -84,11 +84,15 @@ namespace TilePanelDemo
             if (change.Property == LayoutSizeProperty)
             {
                 UpdateLayoutSizePseudoClasses(change.NewValue.GetValueOrDefault<string>());
+                InvalidateMeasure();
+                InvalidateArrange();
             }
 
             if (change.Property == WidthSourceProperty)
             {
                 UpdateWidthSourcePseudoClasses(change.NewValue.GetValueOrDefault<double>());
+                InvalidateMeasure();
+                InvalidateArrange();
             }
         }
 
@@ -112,12 +116,14 @@ namespace TilePanelDemo
 
         private Size MeasureArrange(bool isArrange)
         {
+            double totalWidth = 0;
             double totalHeight = 0;
             int columns = 0;
             int rows = 0;
-            int maxColumns = MaxColumns;
+            int maxColumns = Columns;
             double horizontalOffset = 0;
             double verticalOffset = 0;
+            double columnWidth = 0;
             double rowHeight = 0;
 
             foreach (var child in Children)
@@ -133,16 +139,15 @@ namespace TilePanelDemo
                     _ => Size.Empty
                 };
 
-                columns++;
+                // rowHeight = Math.Max(rowHeight, size.Height);
+                rowHeight = size.Height;
+                columnWidth = size.Width;
 
-                if (columns > maxColumns)
-                {
-                    columns = 0;
-                    horizontalOffset = 0;
-                    verticalOffset += rowHeight;
-                    rowHeight = 0;
-                    rows++;
-                }
+                columns++;
+                rows++;
+
+                totalWidth = Math.Max(totalWidth, columnWidth);
+                totalHeight += rowHeight;
 
                 if (isArrange)
                 {
@@ -156,15 +161,13 @@ namespace TilePanelDemo
                     child.Measure(size);
                 }
 
-                rowHeight = Math.Max(rowHeight, size.Height);
-                horizontalOffset += size.Width;
+                // horizontalOffset += size.Width;
+                verticalOffset += rowHeight;
             }
 
-            totalHeight = verticalOffset + rowHeight;
-   
             Debug.WriteLine($"CxR: {columns}x{rows}");
             
-            return new Size(horizontalOffset, totalHeight);
+            return new Size(totalWidth, totalHeight);
         }
 
         protected override Size MeasureOverride(Size availableSize)
