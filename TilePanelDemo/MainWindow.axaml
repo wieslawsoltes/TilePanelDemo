@@ -38,7 +38,7 @@
                 <!-- TilePanel -->
 
                 <Style Selector="local|TilePanel:small">
-                    <Setter Property="Columns" Value="1" />
+                    <Setter Property="Columns" Value="2" />
                     <Setter Property="Background" Value="LightGray" />
                 </Style>
                 <Style Selector="local|TilePanel:medium">
