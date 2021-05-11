@@ -11,31 +11,10 @@ namespace TilePanelDemo
         ":xs", ":sm", ":md", ":lg", ":xl", ":xxl")]
     public class TilePanel : Panel
     {
-        // Tile sizes
-        private Size _smallSize = new Size(228, 126);
-        private Size _mediumSize = new Size(228, 252);
-        private Size _largeSize = new Size(456, 252);
-        private Size _wideSize = new Size(684, 252);
-
-        // Width breakpoints
-        private double _xSmallBreakpoint = 576;
-        private double _smallBreakpoint = 576;
-        private double _mediumBreakpoint = 768;
-        private double _largeBreakpoint = 992;
-        private double _extraLargeBreakpoint = 1200;
-        private double _extraExtraLargeBreakpoint = 1400;
+        // Attached property for child items.
 
         public static readonly AttachedProperty<string?> TileSizeProperty = 
             AvaloniaProperty.RegisterAttached<IAvaloniaObject, string?>("TileSize", typeof(TilePanel));
-
-        public static readonly StyledProperty<int> ColumnsProperty = 
-            AvaloniaProperty.Register<TilePanel, int>(nameof(Columns));
-
-        public static readonly StyledProperty<string?> LayoutSizeProperty = 
-            AvaloniaProperty.Register<TilePanel, string?>(nameof(LayoutSize));
-
-        public static readonly StyledProperty<double> WidthSourceProperty = 
-            AvaloniaProperty.Register<TilePanel, Double>(nameof(WidthSource));
 
         public static string? GetTileSize(IAvaloniaObject obj)
         {
@@ -47,24 +26,135 @@ namespace TilePanelDemo
             obj.SetValue(TileSizeProperty, value);
         }
 
+        // Predefined tile sizes.
+        
+        public static readonly StyledProperty<Size> SmallTileSizeProperty = 
+            AvaloniaProperty.Register<TilePanel, Size>(nameof(SmallTileSize), new Size(228, 126));
+
+        public static readonly StyledProperty<Size> MediumTileSizeProperty = 
+            AvaloniaProperty.Register<TilePanel, Size>(nameof(MediumTileSize), new Size(228, 252));
+
+        public static readonly StyledProperty<Size> LargeTileSizeProperty = 
+            AvaloniaProperty.Register<TilePanel, Size>(nameof(LargeTileSize), new Size(456, 252));
+        
+        public static readonly StyledProperty<Size> WideTileSizeProperty = 
+            AvaloniaProperty.Register<TilePanel, Size>(nameof(WideTileSize),new Size(684, 252));
+
+        public Size SmallTileSize
+        {
+            get => GetValue(SmallTileSizeProperty);
+            set => SetValue(SmallTileSizeProperty, value);
+        }
+
+        public Size MediumTileSize
+        {
+            get => GetValue(MediumTileSizeProperty);
+            set => SetValue(MediumTileSizeProperty, value);
+        }
+
+        public Size LargeTileSize
+        {
+            get => GetValue(LargeTileSizeProperty);
+            set => SetValue(LargeTileSizeProperty, value);
+        }
+
+        public Size WideTileSize
+        {
+            get => GetValue(WideTileSizeProperty);
+            set => SetValue(WideTileSizeProperty, value);
+        }
+
+        // Predefined breakpoint widths.
+
+        public static readonly StyledProperty<double> XSmallBreakpointProperty = 
+            AvaloniaProperty.Register<TilePanel, double>(nameof(XSmallBreakpoint), 576);
+
+        public static readonly StyledProperty<double> SmallBreakpointProperty = 
+            AvaloniaProperty.Register<TilePanel, double>(nameof(SmallBreakpoint), 576);
+
+        public static readonly StyledProperty<double> MediumBreakpointProperty = 
+            AvaloniaProperty.Register<TilePanel, double>(nameof(MediumBreakpoint), 768);
+
+        public static readonly StyledProperty<double> LargeBreakpointProperty = 
+            AvaloniaProperty.Register<TilePanel, double>(nameof(LargeBreakpoint), 992);
+
+        public static readonly StyledProperty<double> ExtraLargeBreakpointProperty = 
+            AvaloniaProperty.Register<TilePanel, double>(nameof(ExtraLargeBreakpoint), 1200);
+
+        public static readonly StyledProperty<double> ExtraExtraLargeBreakpointProperty = 
+            AvaloniaProperty.Register<TilePanel, double>(nameof(ExtraExtraLargeBreakpoint), 1400);
+
+        public double XSmallBreakpoint
+        {
+            get => GetValue(XSmallBreakpointProperty);
+            set => SetValue(XSmallBreakpointProperty, value);
+        }
+
+        public double SmallBreakpoint
+        {
+            get => GetValue(SmallBreakpointProperty);
+            set => SetValue(SmallBreakpointProperty, value);
+        }
+
+        public double MediumBreakpoint
+        {
+            get => GetValue(MediumBreakpointProperty);
+            set => SetValue(MediumBreakpointProperty, value);
+        }
+
+        public double LargeBreakpoint
+        {
+            get => GetValue(LargeBreakpointProperty);
+            set => SetValue(LargeBreakpointProperty, value);
+        }
+
+        public double ExtraLargeBreakpoint
+        {
+            get => GetValue(ExtraLargeBreakpointProperty);
+            set => SetValue(ExtraLargeBreakpointProperty, value);
+        }
+
+        public double ExtraExtraLargeBreakpoint
+        {
+            get => GetValue(ExtraExtraLargeBreakpointProperty);
+            set => SetValue(ExtraExtraLargeBreakpointProperty, value);
+        }
+
+        // Column breaks.
+
+        public static readonly StyledProperty<int> ColumnsProperty = 
+            AvaloniaProperty.Register<TilePanel, int>(nameof(Columns));
+
         public int Columns
         {
             get => GetValue(ColumnsProperty);
             set => SetValue(ColumnsProperty, value);
         }
 
+        // Layout preset.
+        
+        public static readonly StyledProperty<string?> LayoutSizeProperty = 
+            AvaloniaProperty.Register<TilePanel, string?>(nameof(LayoutSize));
+
         public string? LayoutSize
         {
             get => GetValue(LayoutSizeProperty);
             set => SetValue(LayoutSizeProperty, value);
         }
+
+        // Width breakpoint source.
         
+        public static readonly StyledProperty<double> WidthSourceProperty = 
+            AvaloniaProperty.Register<TilePanel, Double>(nameof(WidthSource));
+
         public double WidthSource
         {
             get => GetValue(WidthSourceProperty);
             set => SetValue(WidthSourceProperty, value);
         }
 
+        // ctor
+        
         public TilePanel()
         {
             UpdateLayoutSizePseudoClasses(LayoutSize);
@@ -80,7 +170,19 @@ namespace TilePanelDemo
                 InvalidateMeasure();
                 InvalidateArrange();
             }
-            
+
+            if (change.Property == XSmallBreakpointProperty
+                || change.Property == SmallBreakpointProperty
+                || change.Property == MediumBreakpointProperty
+                || change.Property == LargeBreakpointProperty
+                || change.Property == ExtraLargeBreakpointProperty
+                || change.Property == ExtraExtraLargeBreakpointProperty)
+            {
+                UpdateWidthSourcePseudoClasses(change.NewValue.GetValueOrDefault<double>());
+                InvalidateMeasure();
+                InvalidateArrange();
+            }
+
             if (change.Property == LayoutSizeProperty)
             {
                 UpdateLayoutSizePseudoClasses(change.NewValue.GetValueOrDefault<string>());
@@ -106,12 +208,12 @@ namespace TilePanelDemo
 
         private void UpdateWidthSourcePseudoClasses(double widthSource)
         {
-            PseudoClasses.Set(":xs", widthSource < _xSmallBreakpoint);
-            PseudoClasses.Set(":sm", widthSource >= _smallBreakpoint);
-            PseudoClasses.Set(":md", widthSource >= _mediumBreakpoint);
-            PseudoClasses.Set(":lg", widthSource >= _largeBreakpoint);
-            PseudoClasses.Set(":xl", widthSource >= _extraLargeBreakpoint);
-            PseudoClasses.Set(":xxl", widthSource >= _extraExtraLargeBreakpoint);
+            PseudoClasses.Set(":xs", widthSource < XSmallBreakpoint);
+            PseudoClasses.Set(":sm", widthSource >= SmallBreakpoint);
+            PseudoClasses.Set(":md", widthSource >= MediumBreakpoint);
+            PseudoClasses.Set(":lg", widthSource >= LargeBreakpoint);
+            PseudoClasses.Set(":xl", widthSource >= ExtraLargeBreakpoint);
+            PseudoClasses.Set(":xxl", widthSource >= ExtraExtraLargeBreakpoint);
         }
 
         private Size MeasureArrange(bool isArrange)
@@ -126,16 +228,21 @@ namespace TilePanelDemo
             double columnWidth = 0;
             double rowHeight = 0;
 
+            var smallTileSize = SmallTileSize;
+            var mediumTileSize = MediumTileSize;
+            var largeTileSize = LargeTileSize;
+            var wideTileSize = WideTileSize;
+            
             foreach (var child in Children)
             {
                 var tileSize = TilePanel.GetTileSize(child);
 
                 var size = tileSize?.ToLower() switch
                 {
-                    "small" => _smallSize,
-                    "medium" => _mediumSize,
-                    "large" => _largeSize,
-                    "wide" => _wideSize,
+                    "small" => smallTileSize,
+                    "medium" => mediumTileSize,
+                    "large" => largeTileSize,
+                    "wide" => wideTileSize,
                     _ => Size.Empty
                 };
 
