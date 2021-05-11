@@ -34,8 +34,39 @@
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
             <ScrollViewer.Styles>
+ 
+                <!-- TilePanel Tile Sizes -->
 
-                <!-- TilePanel -->
+                <Style Selector="local|TilePanel">
+                    <Setter Property="SmallTileSize" Value="228,126" />
+                    <Setter Property="MediumTileSize" Value="228,252" />
+                    <Setter Property="LargeTileSize" Value="456,252" />
+                    <Setter Property="WideTileSize" Value="684,252" />
+                </Style>
+
+                <!-- TilePanel Width Breakpoints -->
+
+                <Style Selector="local|TilePanel">
+                    <!-- :xs -->
+                    <Setter Property="XSmallBreakpoint" Value="576" />
+                    <!-- :sm -->
+                    <Setter Property="SmallBreakpoint" Value="576" />
+                    <!-- :md -->
+                    <Setter Property="MediumBreakpoint" Value="768" />
+                    <!-- :lg -->
+                    <Setter Property="LargeBreakpoint" Value="992" />
+                    <!-- :xl -->
+                    <Setter Property="ExtraLargeBreakpoint" Value="1200" />
+                    <!-- :xxl -->
+                    <Setter Property="ExtraExtraLargeBreakpoint" Value="1400" />
+                </Style>
+
+                <!-- TilePanel Layouts -->
+
+                <!-- LayoutSize="Small" => :small --> 
+                <!-- LayoutSize="Medium" => :medium --> 
+                <!-- LayoutSize="Large" => :large --> 
+                <!-- LayoutSize="Wide" => :wide --> 
 
                 <Style Selector="local|TilePanel:small">
                     <Setter Property="Columns" Value="2" />
