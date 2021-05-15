@@ -74,6 +74,7 @@
 
                 <Style Selector="local|TilePanel:xs">
                     <!-- TODO: -->
+                    <Setter Property="SmallTileSize" Value="114,63" />
                 </Style>
                 <Style Selector="local|TilePanel:sm">
                     <!-- TODO: -->
