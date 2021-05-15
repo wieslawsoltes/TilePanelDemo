@@ -82,7 +82,7 @@
                 <Style Selector="local|TilePanel:xxl">
                     <!-- TODO: -->
                 </Style>
-                
+
                 <!-- TilePanel Layouts -->
 
                 <!-- LayoutSize="Small" => :small --> 
@@ -100,11 +100,11 @@
                 </Style>
                 <Style Selector="local|TilePanel:large">
                     <Setter Property="Columns" Value="3" />
-                    <Setter Property="Background" Value="DarkGray" />
+                    <Setter Property="Background" Value="WhiteSmoke" />
                 </Style>
                 <Style Selector="local|TilePanel:wide">
-                    <Setter Property="Columns" Value="3" />
-                    <Setter Property="Background" Value="WhiteSmoke" />
+                    <Setter Property="Columns" Value="1" />
+                    <Setter Property="Background" Value="DarkGray" />
                 </Style>
 
                 <!-- Tile: red -->
@@ -115,10 +115,10 @@
                     <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
                 <Style Selector="local|TilePanel:large > :is(Control).red">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
                 </Style>
                 <Style Selector="local|TilePanel:wide > :is(Control).red">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
 
                 <!-- Tile: green -->
@@ -129,10 +129,10 @@
                     <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
                 <Style Selector="local|TilePanel:large > :is(Control).green">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Large" />
                 </Style>
                 <Style Selector="local|TilePanel:wide > :is(Control).green">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
 
                 <!-- Tile: blue -->
@@ -143,10 +143,10 @@
                     <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
                 <Style Selector="local|TilePanel:large > :is(Control).blue">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Wide" />
                 </Style>
                 <Style Selector="local|TilePanel:wide > :is(Control).blue">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
 
                 <!-- Tile: yellow -->
@@ -154,13 +154,13 @@
                     <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
                 <Style Selector="local|TilePanel:medium > :is(Control).yellow">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
                 </Style>
                 <Style Selector="local|TilePanel:large > :is(Control).yellow">
                     <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
                 </Style>
                 <Style Selector="local|TilePanel:wide > :is(Control).yellow">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Medium" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
 
                 <!-- Tile: black -->
@@ -174,12 +174,15 @@
                     <Setter Property="(local:TilePanel.TileSize)" Value="Large" />
                 </Style>
                 <Style Selector="local|TilePanel:wide > :is(Control).black">
-                    <Setter Property="(local:TilePanel.TileSize)" Value="Large" />
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
 
                 <!-- Tile: magenta -->
-                <Style Selector="local|TilePanel:wide > :is(Control).magenta">
+                <Style Selector="local|TilePanel:large > :is(Control).magenta">
                     <Setter Property="(local:TilePanel.TileSize)" Value="Wide" />
+                </Style>
+                <Style Selector="local|TilePanel:wide > :is(Control).magenta">
+                    <Setter Property="(local:TilePanel.TileSize)" Value="Small" />
                 </Style>
 
             </ScrollViewer.Styles>
