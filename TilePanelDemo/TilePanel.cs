@@ -221,12 +221,12 @@ namespace TilePanelDemo
             double totalWidth = 0;
             double totalHeight = 0;
             int columns = 0;
-            int rows = 0;
             int maxColumns = Columns;
             double horizontalOffset = 0;
             double verticalOffset = 0;
             double columnWidth = 0;
             double rowHeight = 0;
+            double prevoiusRowHeight = 0;
 
             var smallTileSize = SmallTileSize;
             var mediumTileSize = MediumTileSize;
@@ -236,7 +236,6 @@ namespace TilePanelDemo
             foreach (var child in Children)
             {
                 var tileSize = TilePanel.GetTileSize(child);
-
                 var size = tileSize?.ToLower() switch
                 {
                     "small" => smallTileSize,
@@ -246,13 +245,10 @@ namespace TilePanelDemo
                     _ => Size.Empty
                 };
 
-                // rowHeight = Math.Max(rowHeight, size.Height);
                 rowHeight = size.Height;
+                prevoiusRowHeight = Math.Max(prevoiusRowHeight, rowHeight);
+                
                 columnWidth = size.Width;
-
-                columns++;
-                rows++;
-
                 totalWidth = Math.Max(totalWidth, columnWidth);
                 totalHeight += rowHeight;
 
@@ -268,11 +264,20 @@ namespace TilePanelDemo
                     child.Measure(size);
                 }
 
-                // horizontalOffset += size.Width;
-                verticalOffset += rowHeight;
-            }
+                if (columns < maxColumns - 1)
+                {
+                    horizontalOffset += columnWidth;
+                    columns++;
+                }
+                else
+                {
+                    horizontalOffset = 0.0;
+                    columns = 0;
 
-            Debug.WriteLine($"CxR: {columns}x{rows}");
+                    verticalOffset += prevoiusRowHeight;
+                    prevoiusRowHeight = 0.0;
+                }
+            }
 
             return new Size(totalWidth, totalHeight);
         }
