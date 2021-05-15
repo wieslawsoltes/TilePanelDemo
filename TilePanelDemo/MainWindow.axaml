@@ -89,6 +89,7 @@
                 </Style>
                 <Style Selector="local|TilePanel:xxl">
                     <!-- TODO: -->
+                    <Setter Property="LargeTileSize" Value="684,252" />
                 </Style>
 
                 <!-- TilePanel Layouts -->
