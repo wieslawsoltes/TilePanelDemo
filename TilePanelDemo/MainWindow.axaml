@@ -64,6 +64,13 @@
                     <Setter Property="ExtraExtraLargeBreakpoint" Value="1400" />
                 </Style>
 
+                <!-- WidthSource < XSmallBreakpoint => :xs -->
+                <!-- WidthSource >= SmallBreakpoint => :sm -->
+                <!-- WidthSource >= MediumBreakpoint => :md -->
+                <!-- WidthSource >= LargeBreakpoint => :lg -->
+                <!-- WidthSource >= ExtraLargeBreakpoint => :xl -->
+                <!-- WidthSource >= ExtraExtraLargeBreakpoint => :xxl -->
+
                 <Style Selector="local|TilePanel:xs">
                     <!-- TODO: -->
                 </Style>
