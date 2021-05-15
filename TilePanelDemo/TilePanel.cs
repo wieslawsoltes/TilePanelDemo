@@ -249,8 +249,6 @@ namespace TilePanelDemo
                 prevoiusRowHeight = Math.Max(prevoiusRowHeight, rowHeight);
                 
                 columnWidth = size.Width;
-                totalWidth = Math.Max(totalWidth, columnWidth);
-                totalHeight += rowHeight;
 
                 if (isArrange)
                 {
@@ -267,14 +265,16 @@ namespace TilePanelDemo
                 if (columns < maxColumns - 1)
                 {
                     horizontalOffset += columnWidth;
+                    totalWidth = Math.Max(totalWidth, horizontalOffset);
                     columns++;
                 }
                 else
                 {
                     horizontalOffset = 0.0;
                     columns = 0;
-
                     verticalOffset += prevoiusRowHeight;
+                    totalWidth = Math.Max(totalWidth, horizontalOffset);
+                    totalHeight += prevoiusRowHeight;
                     prevoiusRowHeight = 0.0;
                 }
             }
