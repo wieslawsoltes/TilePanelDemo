@@ -7,6 +7,7 @@
         xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
         x:Class="TilePanelDemo.MainWindow"
+        Name="MainWindow"
         Title="TilePanelDemo">
 
     <DockPanel>
@@ -197,7 +198,7 @@
             <local:TilePanel Name="TilePanel"
                              LayoutSize="Large"
                              UseLayoutRounding="False"
-                             WidthSource="768"
+                             WidthSource="{Binding #MainWindow.Bounds.Width, Mode=OneWay}"
                              Background="Gray">
                 <Rectangle Fill="Red" Classes="red" />
                 <Rectangle Fill="Green" Classes="green" />
