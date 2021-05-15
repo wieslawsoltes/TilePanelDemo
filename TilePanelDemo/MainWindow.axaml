@@ -23,17 +23,18 @@
 
             <StackPanel DockPanel.Dock="Left" Margin="12" Spacing="6">
 
-                <Label Content="LayoutSize" />
-                <ComboBox SelectedItem="{Binding #TilePanel.LayoutSize}" HorizontalAlignment="Stretch">
-                    <generic:List x:TypeArguments="sys:String">
-                        <sys:String>Small</sys:String>
-                        <sys:String>Medium</sys:String>
-                        <sys:String>Large</sys:String>
-                        <sys:String>Wide</sys:String>
-                    </generic:List>
-                </ComboBox>
+                <Expander Header="Layout Size" IsExpanded="True">
+                    <ComboBox SelectedItem="{Binding #TilePanel.LayoutSize}" HorizontalAlignment="Stretch">
+                        <generic:List x:TypeArguments="sys:String">
+                            <sys:String>Small</sys:String>
+                            <sys:String>Medium</sys:String>
+                            <sys:String>Large</sys:String>
+                            <sys:String>Wide</sys:String>
+                        </generic:List>
+                    </ComboBox>
+                </Expander>
 
-                <Expander Header="Tile Sizes" IsExpanded="True" HorizontalContentAlignment="Stretch">
+                <Expander Header="Tile Sizes" IsExpanded="True">
                     <StackPanel>
                         <Label Content="Small" />
                         <TextBox Text="{Binding #TilePanel.SmallTileSize, Converter={x:Static local:SizeValueConverter.Instance}}" Margin="4" HorizontalAlignment="Stretch"/>
@@ -63,11 +64,13 @@
                     </StackPanel>
                 </Expander>
 
-                <Label Content="WidthSource" />
-                <NumericUpDown Text="{Binding #TilePanel.WidthSource}" Value="{Binding #TilePanel.WidthSource}" Minimum="0" IsReadOnly="False" />
+                <Expander Header="Width Source" IsExpanded="True">
+                    <NumericUpDown Text="{Binding #TilePanel.WidthSource}" Value="{Binding #TilePanel.WidthSource}" Minimum="0" IsReadOnly="False" />
+                </Expander>
 
-                <Label Content="MaxColumns" />
-                <NumericUpDown Text="{Binding #TilePanel.Columns}" Minimum="0" IsReadOnly="False" />
+                <Expander Header="Max Columns" IsExpanded="True">
+                    <NumericUpDown Text="{Binding #TilePanel.Columns}" Minimum="0" IsReadOnly="False" />
+                </Expander>
 
             </StackPanel>
 
