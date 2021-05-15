@@ -31,13 +31,13 @@
 
         </StackPanel>
 
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center">
 
             <ScrollViewer.Styles>
- 
+
                 <!-- TilePanel Tile Sizes -->
 
                 <Style Selector="local|TilePanel">
@@ -85,10 +85,10 @@
 
                 <!-- TilePanel Layouts -->
 
-                <!-- LayoutSize="Small" => :small --> 
-                <!-- LayoutSize="Medium" => :medium --> 
-                <!-- LayoutSize="Large" => :large --> 
-                <!-- LayoutSize="Wide" => :wide --> 
+                <!-- LayoutSize="Small" => :small -->
+                <!-- LayoutSize="Medium" => :medium -->
+                <!-- LayoutSize="Large" => :large -->
+                <!-- LayoutSize="Wide" => :wide -->
 
                 <Style Selector="local|TilePanel:small">
                     <Setter Property="Columns" Value="5" />
