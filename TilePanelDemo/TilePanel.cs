@@ -265,16 +265,21 @@ namespace TilePanelDemo
                 if (columns < maxColumns - 1)
                 {
                     horizontalOffset += columnWidth;
+
                     totalWidth = Math.Max(totalWidth, horizontalOffset);
+
                     columns++;
                 }
                 else
                 {
-                    horizontalOffset = 0.0;
-                    columns = 0;
+                    horizontalOffset += columnWidth;
                     verticalOffset += prevoiusRowHeight;
+
                     totalWidth = Math.Max(totalWidth, horizontalOffset);
                     totalHeight += prevoiusRowHeight;
+
+                    columns = 0;
+                    horizontalOffset = 0.0;
                     prevoiusRowHeight = 0.0;
                 }
             }
