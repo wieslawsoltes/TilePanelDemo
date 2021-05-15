@@ -10,40 +10,68 @@
         Name="MainWindow"
         Title="TilePanelDemo">
 
+    <Window.Styles>
+        <Style Selector="Expander /template/ ToggleButton#PART_toggle">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+    </Window.Styles>
+
     <DockPanel>
 
-        <StackPanel DockPanel.Dock="Left" Margin="12" Spacing="6">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
+                      VerticalScrollBarVisibility="Auto">
 
-            <Label Content="LayoutSize" />
-            <ComboBox SelectedItem="{Binding #TilePanel.LayoutSize}" HorizontalAlignment="Stretch">
-                <generic:List x:TypeArguments="sys:String">
-                    <sys:String>Small</sys:String>
-                    <sys:String>Medium</sys:String>
-                    <sys:String>Large</sys:String>
-                    <sys:String>Wide</sys:String>
-                </generic:List>
-            </ComboBox>
+            <StackPanel DockPanel.Dock="Left" Margin="12" Spacing="6">
 
-            <Expander Header="Tile Sizes" IsExpanded="True">
-                <StackPanel>
-                    <Label Content="Small" />
-                    <TextBlock Text="{Binding #TilePanel.SmallTileSize}" Margin="4" HorizontalAlignment="Center"/>
-                    <Label Content="Medium" />
-                    <TextBlock Text="{Binding #TilePanel.MediumTileSize}" Margin="4" HorizontalAlignment="Center"/>
-                    <Label Content="Large" />
-                    <TextBlock Text="{Binding #TilePanel.LargeTileSize}" Margin="4" HorizontalAlignment="Center"/>
-                    <Label Content="Wide" />
-                    <TextBlock Text="{Binding #TilePanel.WideTileSize}" Margin="4" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Expander>
+                <Label Content="LayoutSize" />
+                <ComboBox SelectedItem="{Binding #TilePanel.LayoutSize}" HorizontalAlignment="Stretch">
+                    <generic:List x:TypeArguments="sys:String">
+                        <sys:String>Small</sys:String>
+                        <sys:String>Medium</sys:String>
+                        <sys:String>Large</sys:String>
+                        <sys:String>Wide</sys:String>
+                    </generic:List>
+                </ComboBox>
 
-            <Label Content="WidthSource" />
-            <NumericUpDown Text="{Binding #TilePanel.WidthSource}" Value="{Binding #TilePanel.WidthSource}" Minimum="0" IsReadOnly="False" />
+                <Expander Header="Tile Sizes" IsExpanded="True" HorizontalContentAlignment="Stretch">
+                    <StackPanel>
+                        <Label Content="Small" />
+                        <TextBox Text="{Binding #TilePanel.SmallTileSize, Converter={x:Static local:SizeValueConverter.Instance}}" Margin="4" HorizontalAlignment="Stretch"/>
+                        <Label Content="Medium" />
+                        <TextBox Text="{Binding #TilePanel.MediumTileSize, Converter={x:Static local:SizeValueConverter.Instance}}" Margin="4" HorizontalAlignment="Stretch"/>
+                        <Label Content="Large" />
+                        <TextBox Text="{Binding #TilePanel.LargeTileSize, Converter={x:Static local:SizeValueConverter.Instance}}" Margin="4" HorizontalAlignment="Stretch"/>
+                        <Label Content="Wide" />
+                        <TextBox Text="{Binding #TilePanel.WideTileSize, Converter={x:Static local:SizeValueConverter.Instance}}" Margin="4" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                </Expander>
 
-            <Label Content="MaxColumns" />
-            <NumericUpDown Text="{Binding #TilePanel.Columns}" Minimum="0" IsReadOnly="False" />
+                <Expander Header="Breakpoints" IsExpanded="True">
+                    <StackPanel>
+                        <Label Content="XSmall" />
+                        <TextBox Text="{Binding #TilePanel.XSmallBreakpoint}" Margin="4" HorizontalAlignment="Stretch"/>
+                        <Label Content="Small" />
+                        <TextBox Text="{Binding #TilePanel.SmallBreakpoint}" Margin="4" HorizontalAlignment="Stretch"/>
+                        <Label Content="Medium" />
+                        <TextBox Text="{Binding #TilePanel.MediumBreakpoint}" Margin="4" HorizontalAlignment="Stretch"/>
+                        <Label Content="Large" />
+                        <TextBox Text="{Binding #TilePanel.LargeBreakpoint}" Margin="4" HorizontalAlignment="Stretch"/>
+                        <Label Content="ExtraLarge" />
+                        <TextBox Text="{Binding #TilePanel.ExtraLargeBreakpoint}" Margin="4" HorizontalAlignment="Stretch"/>
+                        <Label Content="ExtraExtraLarge" />
+                        <TextBox Text="{Binding #TilePanel.ExtraExtraLargeBreakpoint}" Margin="4" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                </Expander>
 
-        </StackPanel>
+                <Label Content="WidthSource" />
+                <NumericUpDown Text="{Binding #TilePanel.WidthSource}" Value="{Binding #TilePanel.WidthSource}" Minimum="0" IsReadOnly="False" />
+
+                <Label Content="MaxColumns" />
+                <NumericUpDown Text="{Binding #TilePanel.Columns}" Minimum="0" IsReadOnly="False" />
+
+            </StackPanel>
+
+        </ScrollViewer>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
