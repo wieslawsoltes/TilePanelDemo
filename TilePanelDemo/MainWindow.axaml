@@ -30,6 +30,19 @@
             <Label Content="WidthSource" />
             <NumericUpDown Text="{Binding #TilePanel.WidthSource}" Value="{Binding #TilePanel.WidthSource}" Minimum="0" />
 
+            <Expander Header="Tile Sizes" IsExpanded="True">
+                <StackPanel>
+                    <Label Content="Small" />
+                    <TextBlock Text="{Binding #TilePanel.SmallTileSize}" Margin="4" HorizontalAlignment="Center"/>
+                    <Label Content="Medium" />
+                    <TextBlock Text="{Binding #TilePanel.MediumTileSize}" Margin="4" HorizontalAlignment="Center"/>
+                    <Label Content="Large" />
+                    <TextBlock Text="{Binding #TilePanel.LargeTileSize}" Margin="4" HorizontalAlignment="Center"/>
+                    <Label Content="Wide" />
+                    <TextBlock Text="{Binding #TilePanel.WideTileSize}" Margin="4" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Expander>
+            
         </StackPanel>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto"
