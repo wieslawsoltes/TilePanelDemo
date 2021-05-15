@@ -14,9 +14,6 @@
 
         <StackPanel DockPanel.Dock="Left" Margin="12" Spacing="6">
 
-            <Label Content="MaxColumns" />
-            <NumericUpDown Text="{Binding #TilePanel.Columns}" Minimum="0" />
-
             <Label Content="LayoutSize" />
             <ComboBox SelectedItem="{Binding #TilePanel.LayoutSize}" HorizontalAlignment="Stretch">
                 <generic:List x:TypeArguments="sys:String">
@@ -26,9 +23,6 @@
                     <sys:String>Wide</sys:String>
                 </generic:List>
             </ComboBox>
-
-            <Label Content="WidthSource" />
-            <NumericUpDown Text="{Binding #TilePanel.WidthSource}" Value="{Binding #TilePanel.WidthSource}" Minimum="0" />
 
             <Expander Header="Tile Sizes" IsExpanded="True">
                 <StackPanel>
@@ -42,7 +36,13 @@
                     <TextBlock Text="{Binding #TilePanel.WideTileSize}" Margin="4" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Expander>
-            
+
+            <Label Content="WidthSource" />
+            <NumericUpDown Text="{Binding #TilePanel.WidthSource}" Value="{Binding #TilePanel.WidthSource}" Minimum="0" IsReadOnly="False" />
+
+            <Label Content="MaxColumns" />
+            <NumericUpDown Text="{Binding #TilePanel.Columns}" Minimum="0" IsReadOnly="False" />
+
         </StackPanel>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto"
