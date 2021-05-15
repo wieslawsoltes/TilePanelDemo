@@ -64,12 +64,12 @@
                     <Setter Property="ExtraExtraLargeBreakpoint" Value="1400" />
                 </Style>
 
-                <!-- WidthSource < XSmallBreakpoint => :xs -->
-                <!-- WidthSource >= SmallBreakpoint => :sm -->
-                <!-- WidthSource >= MediumBreakpoint => :md -->
-                <!-- WidthSource >= LargeBreakpoint => :lg -->
-                <!-- WidthSource >= ExtraLargeBreakpoint => :xl -->
-                <!-- WidthSource >= ExtraExtraLargeBreakpoint => :xxl -->
+                <!-- WidthSource < XSmallBreakpoint -> :xs -->
+                <!-- WidthSource >= SmallBreakpoint -> :sm -->
+                <!-- WidthSource >= MediumBreakpoint -> :md -->
+                <!-- WidthSource >= LargeBreakpoint -> :lg -->
+                <!-- WidthSource >= ExtraLargeBreakpoint -> :xl -->
+                <!-- WidthSource >= ExtraExtraLargeBreakpoint -> :xxl -->
 
                 <Style Selector="local|TilePanel:xs">
                     <!-- TODO: -->
@@ -92,10 +92,10 @@
 
                 <!-- TilePanel Layouts -->
 
-                <!-- LayoutSize="Small" => :small -->
-                <!-- LayoutSize="Medium" => :medium -->
-                <!-- LayoutSize="Large" => :large -->
-                <!-- LayoutSize="Wide" => :wide -->
+                <!-- LayoutSize="Small" -> :small -->
+                <!-- LayoutSize="Medium" -> :medium -->
+                <!-- LayoutSize="Large" -> :large -->
+                <!-- LayoutSize="Wide" -> :wide -->
 
                 <Style Selector="local|TilePanel:small">
                     <Setter Property="Columns" Value="5" />
